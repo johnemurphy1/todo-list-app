@@ -1,11 +1,11 @@
-document.getElementById('taskForm').addEventListener('submit', async (e) => {
+document.getElementById("taskForm").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const title = document.getElementById('title').value;
-  const description = document.getElementById('description').value;
+  const title = document.getElementById("title").value;
+  const description = document.getElementById("description").value;
 
-  await fetch('http://localhost:3000/api/tasks', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+  await fetch("/api/task", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ title, description }),
   });
 
@@ -13,13 +13,13 @@ document.getElementById('taskForm').addEventListener('submit', async (e) => {
 });
 
 async function loadTasks() {
-  const res = await fetch('http://localhost:3000/api/tasks');
+  const res = await fetch("/api/tasks");
   const tasks = await res.json();
-  const list = document.getElementById('taskList');
-  list.innerHTML = '';
+  const list = document.getElementById("taskList");
+  list.innerHTML = "";
 
-  tasks.forEach(task => {
-    const li = document.createElement('li');
+  tasks.forEach((task) => {
+    const li = document.createElement("li");
     li.textContent = `${task.title}: ${task.description}`;
     list.appendChild(li);
   });
